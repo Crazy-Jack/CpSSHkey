@@ -23,3 +23,9 @@ Enter your username: [your username]
 Enter the server address: [your server address]
 
 Make sure you have uploaded the rsa of your local machine to the vast.ai configuration. 
+
+## Create new remote user
+
+Run `create_remote_new_user.sh`. 
+
+Instruction to be completed. 
