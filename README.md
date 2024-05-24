@@ -2,7 +2,7 @@
 
 # Tools for automatically configure server for github
 
-## Configuring Github
+## Configuring Github on newly created cloud GPU servers
 
 Github requires rsa keys to pull and commit. It is very tedious to create new keys over and over again and upload them into the github security SSH Key page. The following tools help to reuse the key to any server newly created on vast ai. 
 
