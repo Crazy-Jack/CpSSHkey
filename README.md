@@ -19,7 +19,9 @@ To run, simply use:
 ```bash copy-github-key-to-server.sh```
 
 It will takes the username and the server address. 
+
 Enter your username: [your username]
+
 Enter the server address: [your server address]
 
 Make sure you have uploaded the rsa of your local machine to the vast.ai configuration. 
