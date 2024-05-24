@@ -1,6 +1,6 @@
 
 
-# Tools for automatically configure server for github
+# Tools for automatically configuring server for github
 
 ## Configuring Github on newly created cloud GPU servers
 
