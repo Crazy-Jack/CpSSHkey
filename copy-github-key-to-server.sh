@@ -1,13 +1,17 @@
 #!/bin/bash
 
-# Prompt for the username
-read -p "Enter your username: " username
 
-# Prompt for the server address
-read -p "Enter the server address: " server_address
+# Prompt for the command
+read -p "Your ssh_command: " ssh_command
 
-# Prompt for the port
-read -p "Enter the port: " port
+# Extract the port using sed
+port=$(echo $ssh_command | sed -n 's/.*-p \([0-9]*\).*/\1/p')
+
+# Extract the username and server address using awk
+user_host=$(echo $ssh_command | awk '{print $4}')
+username=$(echo $user_host | cut -d'@' -f1)
+server_address=$(echo $user_host | cut -d'@' -f2)
+
 
 # Display the entered information
 echo "Username: $username"
