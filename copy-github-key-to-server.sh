@@ -31,3 +31,9 @@ scp -P $port ~/.ssh/id_rsa_server $username@$server_address:~/.ssh/
 
 echo "[3] Configuring server..."
 ssh -p $port $username@$server_address 'bash -s' < server_configure.sh
+
+echo "[4] Configure b2"
+
+scp -P $port ~/.ssh/backblaze.sh $username@$server_address:~/.ssh/
+ssh -p $port $username@$server_address 'bash -s' < b2_configure.sh
+
