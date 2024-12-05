@@ -9,8 +9,14 @@ echo ""
 
 
 cd /workspace
+if [ -d "/workspace/dense_prediction_eval" ]; then
+echo "/workspace/dense_prediction_eval existed"
+else
 git clone git@github.com:Crazy-Jack/dense_prediction_eval.git
+fi
+
 cd /workspace/dense_prediction_eval/YOLOv8-simple/dataset
+
 
 echo ""
 echo "##############################"
@@ -27,12 +33,6 @@ else
     rm coco_yolo_v8_simple.zip
 fi
 
-if [ -d "/workspace/env" ]; then
-echo "ENV existed!"
-else
-
-# download the ffcv.tar.gz
-/workspace/b2 file download b2://ffcv-env/yolov8_env.zip /workspace/yolov8_env.zip
 
 echo ""
 echo "##############################"
@@ -40,14 +40,23 @@ echo "# Configure Environments #"
 echo "##############################"
 echo ""
 
-sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6 -y
 
+if [ -d "/workspace/env" ]; then
+echo "ENV existed!"
+else
+
+
+
+# download the ffcv.tar.gz
+/workspace/b2 file download b2://ffcv-env/yolov8_env.zip /workspace/yolov8_env.zip
+sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6 -y
 
 cd /workspace
 # Unpack environment into directory `my_env`
 unzip yolov8_env.zip
 rm yolov8_env.zip
 
+fi
 
 # Activate the environment. This adds `my_env/bin` to your path
 conda init && \
