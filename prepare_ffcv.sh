@@ -1,5 +1,5 @@
 #!/bin/bash
-
+add_key="-i ~/.ssh/id_rsa_server"
 
 # Prompt for the command
 read -p "Your ssh_command: " ssh_command
@@ -22,20 +22,21 @@ echo "Copying keys..."
 echo "[1] RUN scp ~/.ssh/id_rsa_server.pub $username@$server_address:/home/$username/.ssh/id_rsa_server.pub"
 
 server_home_ssh_dir_cmd="mkdir -p \$HOME/.ssh/"
-ssh -p $port $username@$server_address "bash -c '${server_home_ssh_dir_cmd}'"
+ssh $add_key -p $port $username@$server_address "bash -c '${server_home_ssh_dir_cmd}'"
 
-scp -P $port ~/.ssh/id_rsa_server.pub $username@$server_address:~/.ssh/
+scp $add_key -P $port ~/.ssh/id_rsa_server.pub $username@$server_address:~/.ssh/
 
 echo "[2] RUN scp ~/.ssh/id_rsa_server $username@$server_address:~/.ssh/id_rsa_server"
-scp -P $port ~/.ssh/id_rsa_server $username@$server_address:~/.ssh/
+scp $add_key -P $port ~/.ssh/id_rsa_server $username@$server_address:~/.ssh/
 
 echo "[3] Configuring server..."
-ssh -p $port $username@$server_address 'bash -s' < server_configure.sh
+ssh $add_key -p $port $username@$server_address 'bash -s' < server_configure.sh
+
 
 echo "[4] Configure b2"
 
-scp -P $port ~/.ssh/backblaze.sh $username@$server_address:~/.ssh/
-ssh -p $port $username@$server_address 'bash -s' < b2_configure.sh
+scp $add_key -P $port ~/.ssh/backblaze.sh $username@$server_address:~/.ssh/
+ssh $add_key -p $port $username@$server_address 'bash -s' < b2_configure.sh
 
 echo "[5] Download ffcv and dataset"
-ssh -p $port $username@$server_address 'bash -s' < config_ffcv.sh
+ssh $add_key -p $port $username@$server_address 'bash -s' < config_ffcv.sh
